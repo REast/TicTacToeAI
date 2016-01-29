@@ -1,0 +1,4 @@
+C:\Users\Rich\Documents\Visual Studio 2015\Projects\TicTacToeAI\TicTacToeAI\bin\Debug\TicTacToe.dll
+C:\Users\Rich\Documents\Visual Studio 2015\Projects\TicTacToeAI\TicTacToeAI\bin\Debug\TicTacToe.pdb
+C:\Users\Rich\Documents\Visual Studio 2015\Projects\TicTacToeAI\TicTacToeAI\obj\Debug\TicTacToe.dll
+C:\Users\Rich\Documents\Visual Studio 2015\Projects\TicTacToeAI\TicTacToeAI\obj\Debug\TicTacToe.pdb

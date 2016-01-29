@@ -1,0 +1,11 @@
+C:\Users\Rich\Documents\Visual Studio 2015\Projects\TicTacToeAI\Shell\bin\Debug\Shell.exe.config
+C:\Users\Rich\Documents\Visual Studio 2015\Projects\TicTacToeAI\Shell\bin\Debug\Shell.exe
+C:\Users\Rich\Documents\Visual Studio 2015\Projects\TicTacToeAI\Shell\bin\Debug\Shell.pdb
+C:\Users\Rich\Documents\Visual Studio 2015\Projects\TicTacToeAI\Shell\bin\Debug\TicTacToe.dll
+C:\Users\Rich\Documents\Visual Studio 2015\Projects\TicTacToeAI\Shell\bin\Debug\TicTacToe.pdb
+C:\Users\Rich\Documents\Visual Studio 2015\Projects\TicTacToeAI\Shell\obj\Debug\Shell.csprojResolveAssemblyReference.cache
+C:\Users\Rich\Documents\Visual Studio 2015\Projects\TicTacToeAI\Shell\obj\Debug\Shell.FormMain.resources
+C:\Users\Rich\Documents\Visual Studio 2015\Projects\TicTacToeAI\Shell\obj\Debug\Shell.Properties.Resources.resources
+C:\Users\Rich\Documents\Visual Studio 2015\Projects\TicTacToeAI\Shell\obj\Debug\Shell.csproj.GenerateResource.Cache
+C:\Users\Rich\Documents\Visual Studio 2015\Projects\TicTacToeAI\Shell\obj\Debug\Shell.exe
+C:\Users\Rich\Documents\Visual Studio 2015\Projects\TicTacToeAI\Shell\obj\Debug\Shell.pdb
