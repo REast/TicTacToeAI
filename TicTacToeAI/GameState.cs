@@ -16,10 +16,11 @@ namespace TicTacToe
       /// </summary>
       /// <param name="isCompleted">True if the game has ended, otherwise False</param>
       /// <param name="winner">Winning player (null if tie or if the game has not completed)</param>
-      public GameState(bool isCompleted, Player winner)
+      public GameState(bool isCompleted, Player winner, int totalMoves)
       {
          _isCompleted = isCompleted;
          _winner = winner;
+         _totalMoves = totalMoves;
       }
 
       #endregion
@@ -44,6 +45,16 @@ namespace TicTacToe
       public Player Winner
       {
          get { return _winner; }
+      }
+      
+      private int _totalMoves;
+
+      /// <summary>
+      /// Total number of moves made by both players to reach this state
+      /// </summary>
+      public int TotalMoves
+      {
+         get { return _totalMoves; }
       }
 
       #endregion

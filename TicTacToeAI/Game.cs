@@ -278,31 +278,24 @@ namespace TicTacToe
             }
          }
 
+         // Get total move count
+         int totalMoveCount = 0;
+
+         foreach(Square sq in _board.Squares)
+         {
+            if (sq.Owner != null)
+            {
+               totalMoveCount++;
+            }
+         }
+
          // Determine end result
-         if (winner != null)
+         if (winner != null || totalMoveCount == 9)
          {
             isCompleted = true;
-         }
-         else
-         {
-            bool isTie = true;
+         }         
 
-            foreach(Square square in _board.Squares)
-            {
-               if (square.Owner == null)
-               {
-                  isTie = false;
-                  break;
-               }
-            }
-
-            if (isTie)
-            {
-               isCompleted = true;
-            }
-         }
-
-         return new GameState(isCompleted, winner);
+         return new GameState(isCompleted, winner, totalMoveCount);
       }
 
       #endregion

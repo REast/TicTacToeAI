@@ -29,6 +29,8 @@ namespace TicTacToe
             
       private Player _playerOpponent;
 
+      private Timer _timer;
+
       #endregion
 
       #region Properties
@@ -57,7 +59,7 @@ namespace TicTacToe
          stopwatch.Start();
 
          Square bestSquare = null;
-         int bestValue = int.MinValue;
+         float bestValue = float.MinValue;
 
          _playerOpponent = game.Players[0];
 
@@ -66,18 +68,31 @@ namespace TicTacToe
             _playerOpponent = game.Players[1];
          }
 
+         Random rand = new Random();
+         int equalSquares = 0;
+
          foreach (Square square in game.Board.Squares)
          {
             if (square.Owner == null)
             {
                square.Owner = this;
-               int curValue = AlphaBetaPrune(game, int.MinValue, int.MaxValue, false);
+               float curValue = AlphaBetaPrune(game, int.MinValue, int.MaxValue, false);
                square.Owner = null;
 
                if (bestSquare == null || curValue > bestValue)
                {
                   bestValue = curValue;
                   bestSquare = square;
+                  equalSquares = 0;
+               }
+               else if (curValue == bestValue)
+               {
+                  equalSquares++;
+                  if (rand.Next(0,equalSquares + 1) == 0)
+                  {
+                     bestValue = curValue;
+                     bestSquare = square;
+                  }
                }
             }
          }
@@ -93,9 +108,7 @@ namespace TicTacToe
 
          // Ensure that the AI waits at least the minTurnTime before playing a move,
          // making the AI seem more human-like in that it won't make all of its moves near instantaniously.
-         using (Timer timer = new Timer(PlayMoveAfterDelayCallback, playMove, sleepMs, Timeout.Infinite))
-         {
-         } 
+         _timer = new Timer(PlayMoveAfterDelayCallback, playMove, sleepMs, Timeout.Infinite);
       }
 
       #endregion
@@ -104,6 +117,7 @@ namespace TicTacToe
 
       protected void PlayMoveAfterDelayCallback(object state)
       {
+         _timer.Dispose();
          if (state != null)
          {
             Action playMove = (Action)state;
@@ -119,33 +133,33 @@ namespace TicTacToe
       /// <param name="beta">Beta value</param>
       /// <param name="maximizingPlayer">Maximizing player (True when it is THIS AI's turn in the simulation)</param>
       /// <returns></returns>
-      private int AlphaBetaPrune(Game game, int alpha, int beta, bool maximizingPlayer)
+      private float AlphaBetaPrune(Game game, float alpha, float beta, bool maximizingPlayer)
       {
          // Check the current game state and if it is completed, return the (maximizing player's) value associated with the game outcome
          GameState state = game.GetGameState();
 
          if (state.IsCompleted)
          {
-            if (state.Winner == null)
+            if (state.Winner == this)
+            {
+               return 1f + (1f - state.TotalMoves / 9f);
+            }
+            else if (state.Winner == null)
             {
                return 0;
             }
-            else if (state.Winner == this)
-            {
-               return 1;
-            }
             else
             {
-               return -1;
+               return -1f - (1f - state.TotalMoves / 9f); ;               
             }
          }
 
          // If the game was not completed by the previous move, continue recursing through possible moves
-         int value;
+         float value;
 
          if (maximizingPlayer)
          {
-            value = int.MinValue;
+            value = float.MinValue;
 
             foreach (Square square in game.Board.Squares)
             {
@@ -165,7 +179,7 @@ namespace TicTacToe
          }
          else
          {
-            value = int.MaxValue;
+            value = float.MaxValue;
 
             foreach (Square square in game.Board.Squares)
             {
